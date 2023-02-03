@@ -6,9 +6,6 @@
 
 #include <math.h>
 
-#define BALL_RAD    1
-
-
 class Ball
 {
 private:
@@ -19,13 +16,14 @@ private:
     float m_y_pos;
     
     int16_t m_speed;
+    int16_t m_radius;
     float m_x_vel;
     float m_y_vel;
     int16_t m_angle;
 
 public:
     // Ball constructor
-    Ball(int16_t max_x, int16_t max_y, int16_t speed);
+    Ball(int16_t max_x, int16_t max_y, int16_t radius, int16_t speed);
 
     // Setters and getters
     void setXPos(int16_t x_pos);

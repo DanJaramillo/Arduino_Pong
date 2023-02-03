@@ -32,6 +32,7 @@
 // Game info
 #define BALL_SPEED      2
 #define PADDLE_SPEED    2
+#define BALL_RADIUS     2
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, 
 OLED_CS);
@@ -48,7 +49,7 @@ bool button_l;
 
 Paddle paddle_l(1, 32, 2, 9, PADDLE_SPEED);
 Paddle paddle_r(125, 32, 2, 9, PADDLE_SPEED);
-Ball ball(63, 31, BALL_SPEED);
+Ball ball(SCREEN_WIDTH, SCREEN_HEIGHT, BALL_RADIUS, BALL_SPEED);
 
 int8_t game_state;
 

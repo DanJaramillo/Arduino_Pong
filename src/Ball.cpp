@@ -1,9 +1,10 @@
 #include "ball.h"
 
 // Ball constructor
-Ball::Ball(int16_t max_x, int16_t max_y, int16_t speed) {
+Ball::Ball(int16_t max_x, int16_t max_y, int16_t radius, int16_t speed) {
     m_max_x = max_x;
     m_max_y = max_y;
+    m_radius = radius;
     m_speed = speed;
 }
 
@@ -51,13 +52,13 @@ void Ball::update() {
         m_y_vel = -m_y_vel;
     }
     else if(m_y_pos > m_max_y) {
-        m_y_pos -= m_y_pos;
+        m_y_pos -= m_y_pos - m_max_y;
         m_y_vel = -m_y_vel;
     }
 }
 
 // Draw ball to screen
 void Ball::draw(Adafruit_SSD1306 &display) {
-    display.fillCircle(m_x_pos, m_y_pos, BALL_RAD, SSD1306_WHITE);
+    display.fillCircle(m_x_pos, m_y_pos, m_radius, SSD1306_WHITE);
 }
 
