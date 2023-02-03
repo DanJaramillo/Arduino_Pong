@@ -49,10 +49,9 @@ bool button_l;
 
 Paddle paddle_l(1, 32, 2, 9, PADDLE_SPEED);
 Paddle paddle_r(125, 32, 2, 9, PADDLE_SPEED);
-Ball ball(SCREEN_WIDTH, SCREEN_HEIGHT, BALL_RADIUS, BALL_SPEED);
+Ball ball(63, 31, SCREEN_WIDTH, SCREEN_HEIGHT, BALL_RADIUS, BALL_SPEED);
 
 int8_t game_state;
-
 
 // Setup
 void setup() {

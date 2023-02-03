@@ -4,7 +4,11 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-#include <math.h>
+/*
+    Ball Class
+
+    Controls the basic movement of the ball in Pong Game.
+*/
 
 class Ball
 {
@@ -19,24 +23,37 @@ private:
     int16_t m_radius;
     float m_x_vel;
     float m_y_vel;
-    int16_t m_angle;
 
 public:
     // Ball constructor
-    Ball(int16_t max_x, int16_t max_y, int16_t radius, int16_t speed);
+    Ball(const int16_t &x_pos, const int16_t &y_pos, const int16_t &max_x, const int16_t &max_y, const int16_t &radius, 
+    const int16_t &speed);
 
     // Setters and getters
-    void setXPos(int16_t x_pos);
-    void setYPos(int16_t y_pos);
-    void setPos(int16_t x_pos, int16_t y_pos);
-    void setAngle(int16_t angle);
     int16_t getXPos();
     int16_t getYPos();
+    int16_t getXVel();
+    int16_t getYVel();
 
-    // Update position of the ball
+    void setXPos(const int16_t &x_pos);
+    void setYPos(const int16_t & y_pos);
+    void setPos(const int16_t &x_pos, const int16_t &y_pos);
+    void setXVel(const int16_t &x_vel);
+    void setYVel(const int16_t &y_vel);
+    void setVel(const int16_t &x_vel, const int16_t &y_vel);
+    void setAngle(const int16_t &angle);
+
+
+    /**
+     * update()
+     * Moves the position of the ball based on the x and y velocities.
+    */
     void update();
 
-    // Draw ball to screen
+    /**
+     * draw()
+     * Draws a filled circle of balls radius at balls current x and y position.
+    */
     void draw(Adafruit_SSD1306 &display);
 };
 

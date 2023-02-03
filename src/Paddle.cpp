@@ -1,7 +1,7 @@
 #include "paddle.h"
 
 // Paddle constructor
-Paddle::Paddle(const int16_t & x_pos, const int16_t & y_pos, const int16_t & width, const int16_t & height, const int16_t & speed)
+Paddle::Paddle(const int16_t &x_pos, const int16_t &y_pos, const int16_t &width, const int16_t &height, const int16_t &speed)
 {
     m_x_pos = x_pos;
     m_y_pos = y_pos;
@@ -11,16 +11,26 @@ Paddle::Paddle(const int16_t & x_pos, const int16_t & y_pos, const int16_t & wid
 }
 
 // Setters and getters
+int16_t Paddle::getXPos(){ return m_x_pos; }
+
+int16_t Paddle::getYPos(){ return m_y_pos; }
+
 int16_t Paddle::getSpeed(){ return m_speed; }
 
-void Paddle::setSpeed(const int16_t & speed)
+void Paddle::setSpeed(const int16_t &speed)
 {
     m_speed = speed;
 }
 
-int16_t Paddle::getXPos(){ return m_x_pos; }
-int16_t Paddle::getYPos(){ return m_y_pos; }
-void Paddle::setPos(const int16_t & x_pos, const int16_t & y_pos)
+void Paddle::setXPos(const int16_t &x_pos) {
+    m_x_pos = x_pos;
+}
+
+void Paddle::setYPos(const int16_t &y_pos) {
+    m_y_pos = y_pos;
+}
+
+void Paddle::setPos(const int16_t &x_pos, const int16_t &y_pos)
 {
     m_x_pos = x_pos;
     m_y_pos = y_pos;
@@ -44,18 +54,19 @@ void Paddle::update()
 }
 
 // Sets the paddles requested position. Where we want the paddle to move to.
-void Paddle::reqYPos(const int16_t & y_pos) 
+void Paddle::reqYPos(const int16_t &y_pos) 
 {
     m_req_y_pos = y_pos;
 }
 
-// Checks if and where the paddle is hit and returns the rebound angle
-int Paddle::checkHit(const int16_t & x_pos, const int16_t & y_pos) {
-    if(x_pos <= m_x_pos + m_width + 1 && x_pos >= m_x_pos - 1) {
-        return 1;
+// Checks if the point is inside or touching the paddle.
+bool Paddle::checkHit(const int16_t &x_pos, const int16_t &y_pos) {
+    int16_t rect_y = m_y_pos - m_height / 2;    // y-coordinant of upper edge of paddle
+    if(x_pos >= m_x_pos - 1 && x_pos <= m_x_pos + m_width + 1 && y_pos >= rect_y && y_pos <= rect_y + m_width) {
+        return true;
     }
     else {
-        return -1;
+        return false;
     }
 }
 

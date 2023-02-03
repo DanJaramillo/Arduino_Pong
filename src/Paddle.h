@@ -4,10 +4,9 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-/*
-Paddle class
-
-Controls position and motion of a paddle for Pong.
+/**
+ * Paddle Class
+ * Controls position and drawing of paddle for Pong Game.
 */
 class Paddle
 {
@@ -21,26 +20,43 @@ private:
 
 public:
     // Paddle Constructor - must set initial position, dimensions, and speed of paddle
-    Paddle(const int16_t & x_pos, const int16_t & y_pos, const int16_t & width, const int16_t & height, const int16_t & speed);
+    Paddle(const int16_t &x_pos, const int16_t &y_pos, const int16_t &width, const int16_t &height, const int16_t &speed);
 
-    // Setters and Getters
-    int16_t getSpeed();
-    void setSpeed(const int16_t & speed);
+    /**
+     * Setters and Getters
+    */
     int16_t getXPos();
     int16_t getYPos();
-    void setPos(const int16_t & x_pos, const int16_t & y_pos);
+    int16_t getSpeed();
+    
+    void setSpeed(const int16_t &speed);
+    void setXPos(const int16_t &x_pos);
+    void setYPos(const int16_t &y_pos);
+    void setPos(const int16_t &x_pos, const int16_t &y_pos);
 
-    // Updates paddles position based on speed. Paddle will move "speed" pixels until it reaches the requested position
+    /**
+     * update()
+     * Moves paddle towards target position by amount specified in speed.
+    */
     void update();
 
-    // Sets the position that the paddle should move to.
-    void reqYPos(const int16_t & y_pos);
+    /**
+     * reqYPos()
+     * Sets a target y position for the paddle to start moving towards.
+    */
+    void reqYPos(const int16_t &y_pos);
 
-    // Checks if and where the paddle is hit and returns the rebound angle
-    int checkHit(const int16_t & x_pos, const int16_t & y_pos);
+    /**
+     * checkHit()
+     * Checks if the specified x and y coordinates are inside the paddle.
+    */
+    bool checkHit(const int16_t &x_pos, const int16_t &y_pos);
 
-    // Draws paddle to the display buffer. display.display() call must be made to send buffer to display.
-    void draw(Adafruit_SSD1306 & display);
+    /**
+     * draw()
+     * Draws a filled rectangle for the current position of the paddle.
+    */
+    void draw(Adafruit_SSD1306 &display);
 };
 
 #endif
