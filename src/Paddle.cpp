@@ -1,4 +1,4 @@
-#include <paddle.h>
+#include "paddle.h"
 
 // Paddle constructor
 Paddle::Paddle(const int16_t & x_pos, const int16_t & y_pos, const int16_t & width, const int16_t & height, const int16_t & speed)
@@ -50,18 +50,13 @@ void Paddle::reqYPos(const int16_t & y_pos)
 }
 
 // Checks if and where the paddle is hit and returns the rebound angle
-int checkHit(const int16_t & x_pos, const int16_t & y_pos) {
+int Paddle::checkHit(const int16_t & x_pos, const int16_t & y_pos) {
     if(x_pos <= m_x_pos + m_width + 1 && x_pos >= m_x_pos - 1) {
-        int16_t y_offset = y_pos - m_y_pos;
-        switch(y_offset) {
-            case 2:
-                
-        }
+        return 1;
     }
     else {
         return -1;
     }
-
 }
 
 // Draws the paddle to the display buffer.

@@ -4,28 +4,41 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
+#include <math.h>
+
+#define BALL_RAD    1
+
 
 class Ball
 {
 private:
-    int m_max_x;
-    int m_max_y;
+    int16_t m_max_x;
+    int16_t m_max_y;
     
-    int m_x_pos;
-    int m_y_pos;
+    float m_x_pos;
+    float m_y_pos;
     
-    int m_speed;
-    int m_x_vel;
-    int m_y_vel;
+    int16_t m_speed;
+    float m_x_vel;
+    float m_y_vel;
+    int16_t m_angle;
 
 public:
-    Ball(int max_x, int max_y, int speed);
-    void setXPos(int x_pos);
-    void setYPos(int y_pos);
-    void setPos(int x_pos, int y_pos);
-    int getXPos();
-    int getYPos();
+    // Ball constructor
+    Ball(int16_t max_x, int16_t max_y, int16_t speed);
+
+    // Setters and getters
+    void setXPos(int16_t x_pos);
+    void setYPos(int16_t y_pos);
+    void setPos(int16_t x_pos, int16_t y_pos);
+    void setAngle(int16_t angle);
+    int16_t getXPos();
+    int16_t getYPos();
+
+    // Update position of the ball
     void update();
+
+    // Draw ball to screen
     void draw(Adafruit_SSD1306 &display);
 };
 
