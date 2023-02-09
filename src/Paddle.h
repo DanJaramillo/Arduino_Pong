@@ -19,7 +19,10 @@ private:
     int16_t m_height;       // height of paddle
 
 public:
-    // Paddle Constructor - must set initial position, dimensions, and speed of paddle
+    /**
+     * Paddle Constructor
+     * Must set initial position, dimensions of paddle, and speed.
+    */
     Paddle(const int16_t &x_pos, const int16_t &y_pos, const int16_t &width, const int16_t &height, const int16_t &speed);
 
     /**
